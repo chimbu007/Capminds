@@ -208,13 +208,12 @@ body:has(.app-sidebar.collapsed) #sidebar-toggle-icon {
 .app-sidebar {
   width: var(--sidebar-width) !important;
   max-width: var(--sidebar-width) !important;
-  height: 802px !important;
+  height: 100% !important;
   background-color: var(--bg-sidebar);
   border-right: 2px solid #c0c8d2;
   display: flex;
   flex-direction: column;
-  transition: width var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1),
-              height var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 90;
 }
@@ -222,7 +221,7 @@ body:has(.app-sidebar.collapsed) #sidebar-toggle-icon {
 .app-sidebar.collapsed {
   width: var(--sidebar-collapsed-width) !important;
   max-width: var(--sidebar-collapsed-width) !important;
-  height: 810px !important;
+  height: 100% !important;
 }
 
 .sidebar-toggle-container {
@@ -920,7 +919,8 @@ body:has(.app-sidebar.collapsed) #sidebar-toggle-icon {
 
 .table-responsive {
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .appointments-table {
@@ -1640,5 +1640,9 @@ select.form-input {
   
   .btn-cancel, .btn-save {
     width: 100% !important;
+  }
+
+  .appointments-table {
+    min-width: 800px !important;
   }
 }
