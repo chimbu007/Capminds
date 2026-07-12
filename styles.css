@@ -1557,7 +1557,8 @@ select.form-input {
     grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
   }
 
-  .calendar-day-header {
+  .calendar-day-header,
+  .calendar-day-header.current-weekday {
     font-size: 10px !important;
     padding: 8px 2px !important;
     color: transparent !important;

@@ -725,12 +725,6 @@ function renderDashboard() {
     `;
   });
 
-  const MIN_ROWS = 8;
-  const emptyRowsNeeded = Math.max(0, MIN_ROWS - filtered.length);
-  for (let i = 0; i < emptyRowsNeeded; i++) {
-    rowsHTML += `<tr class="empty-filler-row"><td colspan="7"></td></tr>`;
-  }
-
   DOM.appointmentsTableBody.innerHTML = rowsHTML;
 
   DOM.appointmentsTableBody.querySelectorAll('.edit').forEach(btn => {
