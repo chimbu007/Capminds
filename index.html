@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capminds - Appointment Scheduling System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <a href="#" class="logo-container">
+      <img src="images/logo.png" class="logo-icon" alt="CAPMINDS Logo">
+      <span>CAPMINDS</span>
+    </a>
+    
+    <button class="btn-book-appointment" id="btn-open-booking">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+      Book Appointment
+    </button>
+  </header>
+
+  <div class="app-body">
+    
+    <aside class="app-sidebar" id="app-sidebar">
+      <div class="sidebar-toggle-container">
+        <button class="btn-sidebar-toggle" id="btn-sidebar-toggle" title="Toggle Sidebar">
+          <img id="sidebar-toggle-icon" src="images/toggle.png" alt="Toggle Sidebar" width="20" height="20">
+        </button>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a class="nav-item active" id="nav-calendar" data-target="calendar-page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span class="nav-item-label">Calendar</span>
+        </a>
+        
+        <a class="nav-item" id="nav-dashboard" data-target="dashboard-page">
+          <img src="images/dashboard.png" class="nav-icon" alt="Dashboard Icon" width="24" height="24">
+          <span class="nav-item-label">Dashboard</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="app-main-wrapper">
+      
+      <main class="app-content">
+      
+      <section class="page-view active" id="calendar-page">
+        <div class="calendar-card">
+          <div class="calendar-controls">
+            <div class="calendar-nav-group">
+              <button class="btn-cal-nav" id="btn-cal-prev" title="Previous Month">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              
+              <span class="cal-current-date" id="cal-date-label">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>January 18, 2023</span>
+              </span>
+              
+              <button class="btn-cal-nav" id="btn-cal-next" title="Next Month">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+            
+            <button class="btn-today" id="btn-cal-today">Today</button>
+            
+            <select class="select-view-mode" id="cal-view-select">
+              <option value="month">Month</option>
+              <option value="week">Week</option>
+              <option value="day">Day</option>
+            </select>
+          </div>
+          
+          <div class="calendar-context-header">
+            <span class="doctor-filter-label" id="calendar-doctor-context" title="Click to filter by doctor">
+              James Marry
+            </span>
+          </div>
+          
+          <div class="calendar-grid-header">
+            <div class="calendar-grid">
+              <div class="calendar-day-header">Sunday</div>
+              <div class="calendar-day-header">Monday</div>
+              <div class="calendar-day-header">Tuesday</div>
+              <div class="calendar-day-header">Wednesday</div>
+              <div class="calendar-day-header">Thursday</div>
+              <div class="calendar-day-header">Friday</div>
+              <div class="calendar-day-header">Saturday</div>
+            </div>
+          </div>
+          <div class="calendar-grid" id="calendar-grid-days"></div>
+        </div>
+        
+        <div class="mobile-day-details" id="mobile-day-details">
+          <h3 id="mobile-day-title">Appointments on Jan 18, 2023</h3>
+          <div class="mobile-apt-list" id="mobile-apt-list"></div>
+        </div>
+      </section>
+
+      <section class="page-view" id="dashboard-page">
+        <div class="dashboard-title-bar">
+          <h1>Patient Dashboard</h1>
+        </div>
+        
+        <div class="filters-panel">
+          <div class="filter-input-wrapper filter-patient-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="filter-input" id="filter-patient" placeholder="Patient Search">
+          </div>
+          
+          <div class="filter-input-wrapper filter-doctor-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="filter-input" id="filter-doctor" placeholder="Doctor Search">
+          </div>
+          
+          <div class="filter-date-range">
+            <div class="filter-input-wrapper date-wrapper filter-date-from-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <input type="text" class="filter-input" id="filter-date-from" placeholder="24/01/2023" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+            </div>
+            <span class="filter-date-separator">—</span>
+            <div class="filter-input-wrapper date-wrapper filter-date-to-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <input type="text" class="filter-input" id="filter-date-to" placeholder="24/01/2023" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+            </div>
+          </div>
+          
+          <button class="btn-filter-update" id="btn-filter-update">Update</button>
+        </div>
+        
+        <div class="details-card">
+          <div class="details-card-header">
+            <h2>Appointment Details</h2>
+          </div>
+          <div class="table-responsive">
+            <table class="appointments-table" id="appointments-table">
+              <thead>
+                <tr>
+                  <th>Patient</th>
+                  <th>Doctor</th>
+                  <th>Hospital</th>
+                  <th>Specialty</th>
+                  <th>Select Date</th>
+                  <th>Select Time</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="appointments-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="appointment-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title-text">Schedule Appointment</h3>
+        <button class="btn-close-modal" id="btn-close-modal" title="Close Modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      
+      <form class="modal-form" id="appointment-form" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <div class="field-icon">
+              <img src="images/field_users.png" alt="Patient">
+            </div>
+            <div class="field-control-container">
+              <select class="form-input" id="apt-patient" required>
+                <option value="" disabled selected>Patient Name</option>
+                <option value="Henry James">Henry James</option>
+                <option value="Emily Watson">Emily Watson</option>
+                <option value="Jane Doe">Jane Doe</option>
+                <option value="John Smith">John Smith</option>
+                <option value="Sophia Garcia">Sophia Garcia</option>
+              </select>
+              <div class="error-message" id="error-apt-patient">Patient name is required.</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="field-icon">
+              <img src="images/field_users.png" alt="Doctor">
+            </div>
+            <div class="field-control-container">
+              <select class="form-input" id="apt-doctor" required>
+                <option value="" disabled selected>Doctor Name</option>
+                <option value="James Marry">James Marry</option>
+                <option value="Sarah Connor">Sarah Connor</option>
+                <option value="Robert Chen">Robert Chen</option>
+                <option value="Lisa Ray">Lisa Ray</option>
+              </select>
+              <div class="error-message" id="error-apt-doctor">Doctor name is required.</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="field-icon">
+              <img src="images/field_hospital.png" alt="Hospital">
+            </div>
+            <div class="field-control-container">
+              <select class="form-input" id="apt-hospital" required>
+                <option value="" disabled selected>Hospital Name</option>
+                <option value="Salus Center (General Hospital)">Salus Center (General Hospital)</option>
+                <option value="Ultracare (General Hospital)">Ultracare (General Hospital)</option>
+                <option value="City Health Clinic">City Health Clinic</option>
+              </select>
+              <div class="error-message" id="error-apt-hospital">Hospital name is required.</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="field-icon">
+              <img src="images/field_specialty.png" alt="Specialty">
+            </div>
+            <div class="field-control-container">
+              <select class="form-input" id="apt-specialty-select" required>
+                <option value="" disabled selected>Specialty</option>
+                <option value="Dermatology">Dermatology</option>
+                <option value="Cardiology">Cardiology</option>
+                <option value="Pediatrics">Pediatrics</option>
+                <option value="Neurology">Neurology</option>
+                <option value="General Medicine">General Medicine</option>
+              </select>
+              <div class="error-message" id="error-apt-specialty-select">Specialty is required.</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="field-icon">
+              <img src="images/field_calendar.png" alt="Calendar">
+            </div>
+            <div class="field-control-container">
+              <input type="date" class="form-input" id="apt-date" required>
+              <div class="error-message" id="error-apt-date">Date is required.</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="field-icon">
+              <img src="images/field_clock.png" alt="Clock">
+            </div>
+            <div class="field-control-container">
+              <select class="form-input" id="apt-time" required>
+                <option value="" disabled selected>Select Time</option>
+                <option value="09:00 AM - 09:15 AM">09:00 AM - 09:15 AM</option>
+                <option value="09:15 AM - 09:30 AM">09:15 AM - 09:30 AM</option>
+                <option value="09:30 AM - 09:45 AM">09:30 AM - 09:45 AM</option>
+                <option value="09:45 AM - 10:00 AM">09:45 AM - 10:00 AM</option>
+                <option value="10:00 AM - 10:15 AM">10:00 AM - 10:15 AM</option>
+                <option value="10:30 AM - 10:45 AM">10:30 AM - 10:45 AM</option>
+                <option value="11:00 AM - 11:15 AM">11:00 AM - 11:15 AM</option>
+                <option value="12:00 PM - 12:15 PM">12:00 PM - 12:15 PM</option>
+                <option value="02:00 PM - 02:15 PM">02:00 PM - 02:15 PM</option>
+                <option value="03:00 PM - 03:15 PM">03:00 PM - 03:15 PM</option>
+                <option value="04:00 PM - 04:15 PM">04:00 PM - 04:15 PM</option>
+              </select>
+              <div class="error-message" id="error-apt-time">Time is required.</div>
+            </div>
+          </div>
+          
+          <div class="form-group full-width">
+            <div class="field-icon-spacer"></div>
+            <div class="field-control-container">
+              <label class="form-label" for="apt-reason" style="margin-bottom: 2px;">Reason</label>
+              <input type="text" class="form-input" id="apt-reason" placeholder="">
+            </div>
+          </div>
+        </div>
+      </form>
+      
+      <div class="form-actions">
+        <button class="btn-cancel" id="btn-cancel-booking">Cancel</button>
+        <button class="btn-save" id="btn-save-booking">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
