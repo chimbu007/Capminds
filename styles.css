@@ -1394,12 +1394,25 @@ select.form-input {
   }
 
   .logo-container {
+    width: auto !important;
+    max-width: none !important;
+    padding: 0 !important;
+    background-color: transparent !important;
     font-size: 16px !important;
-    gap: 8px !important;
+    gap: 6px !important;
+  }
+
+  .logo-icon {
+    width: 28px !important;
+    height: 28px !important;
   }
 
   .logo-container span {
+    width: auto !important;
+    height: auto !important;
+    line-height: normal !important;
     display: inline-block !important;
+    font-size: 16px !important;
   }
   
   .btn-book-appointment {
@@ -1540,10 +1553,41 @@ select.form-input {
     margin: 0 !important;
   }
   
+  .calendar-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  }
+
   .calendar-day-header {
     font-size: 10px !important;
-    padding: 8px 4px !important;
+    padding: 8px 2px !important;
+    color: transparent !important;
+    position: relative !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
   }
+
+  .calendar-day-header::after {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: #000000 !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+  }
+
+  .calendar-day-header.current-weekday::after {
+    color: var(--primary-color) !important;
+  }
+
+  .calendar-day-header:nth-child(1)::after { content: "Sun" !important; }
+  .calendar-day-header:nth-child(2)::after { content: "Mon" !important; }
+  .calendar-day-header:nth-child(3)::after { content: "Tue" !important; }
+  .calendar-day-header:nth-child(4)::after { content: "Wed" !important; }
+  .calendar-day-header:nth-child(5)::after { content: "Thu" !important; }
+  .calendar-day-header:nth-child(6)::after { content: "Fri" !important; }
+  .calendar-day-header:nth-child(7)::after { content: "Sat" !important; }
   
   .calendar-cell {
     min-height: 50px !important;
